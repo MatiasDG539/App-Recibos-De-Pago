@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+
     <title>Recibos De Pago</title>
 
     <link rel="stylesheet" href="./../css/styles.css">
@@ -22,16 +28,20 @@
     
             <div class="login-form">
                 <form action="loginForm">
-                    <label for="username">Usuario: </label>
-                    <input type="text" id="username" name="username" required>
-                    <label for="password">Contraseña: </label>
-                    <input type="password" id="password" name="password" required>
+                    <label for="username">USUARIO: </label>
+                    <input type="text" id="username" name="username" required maxlength="20">
+                    <label for="password">CONTRASEÑA: </label>
+                    <input type="password" id="password" name="password" required minlength="6" maxlength="12">
         
                     <button type="submit">INGRESAR</button>
                 </form>
             </div>
         </div>
     </div>
+
+    <footer class="footer">
+        <h3>© Copyright Gutierrez Hnos. Electricidad - Design by Matias Daniel Gutierrez</h3>
+    </footer>
 
 </body>
 </html>
