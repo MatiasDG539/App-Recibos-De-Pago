@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 select.appendChild(option)
             });
         });
-    //Lógica para rellenar los campos Dirección y CUIL/CUIT en el caso de haber seleccionado un cliente.
+    //Lógica para rellenar automáticamente los campos Dirección y CUIL/CUIT en el caso de haber seleccionado un cliente.
     document.getElementById('clientName').addEventListener('change', function(event) {
         const name = event.target.value;
         if(name) {
