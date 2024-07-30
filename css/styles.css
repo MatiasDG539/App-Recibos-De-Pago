@@ -10,8 +10,6 @@ body {
     background-color: #e2eafc;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 /* Login */
@@ -25,7 +23,7 @@ body {
     flex-wrap: wrap;
     width: 100%;
     gap: 100px;
-    top: 20%;
+    top: 12%;
 }
 
 .side-logo img {
@@ -52,6 +50,15 @@ body {
     padding-bottom: 50px;
 }
 
+.login-container p {
+    color: #003554;
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    padding-bottom: 50px;
+}
+
 .login-form {
     display: flex;
     flex-direction: column;
@@ -62,13 +69,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 400px;
 }
 
 .login-form label,
 .login-form input,
 .login-form button {
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
     margin-bottom: 35px;
 }
 
@@ -103,6 +111,7 @@ body {
 }
 
 .login-form input[type="text"],
+.login-form INPUT[type="email"],
 .login-form input[type="password"] {
     color: #003554;
     font-family: "Manrope", sans-serif;
@@ -215,9 +224,18 @@ body {
 /* Make Receipt */
 
 .tittle {
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+}
+
+.mainContainer {
     display: flex;
+    flex: 1;
+    align-items: center;
     justify-content: center;
-    padding: 40px;
+    padding: 20px;
+    margin: auto;
 }
 
 .formContainer {
@@ -429,15 +447,11 @@ form select {
 
 .footer {
     background-color: #2d4af1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 36px;
-    margin-top: 80px;
-    bottom: 0;
+    padding: 40px;
+    text-align: center;
     width: 100%;
-    position:relative;
+    position: absolute;
+    bottom: 0;
 }
 
 .footer h3 {
