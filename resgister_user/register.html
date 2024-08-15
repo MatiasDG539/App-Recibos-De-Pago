@@ -3,39 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-    <!-- Fuentes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-
-    <title>Recibos De Pago</title>
-
-    <link rel="stylesheet" href="./../css/styles.css">
-
+    <link rel="stylesheet" href="./../src/css/styles.css">
 </head>
 <body>
-    
-    <div class="login-page">
+        
+    <div class="register-page">
         <div class="side-logo">
-            <img src="./../assets/img/Logo.png" alt="Icono de rayo - Gutierrez Hnos Electricidad - Logo empresa">
+            <img src="./../src/assets/img/Logo.png" alt="Icono de rayo - Gutierrez Hnos Electricidad - Logo empresa">
         </div>
     
         <div class="center-dash"></div>
 
-        <div class="login-container">
+        <div class="register-container">
             <h2>REGISTRAR USUARIO</h2>
     
-            <div class="login-form">
-                <form action="loginForm">
+            <div class="register-form">
+                <form id="registerForm">
                     <label for="username">USUARIO: </label>
                     <input type="text" id="username" name="username" required maxlength="20">
                     <label for="email">EMAIL: </label>
-                    <input type="email" name="e" id="email" required>
+                    <input type="email" id="email" name="email" required>
                     <label for="password">CONTRASEÑA: </label>
                     <input type="password" id="password" name="password" required minlength="6" maxlength="12">
         
-                    <button type="submit">REGISTRARSE</button>
+                    <button type="submit">REGISTRAR</button>
                 </form>
             </div>
         </div>
@@ -44,6 +37,8 @@
     <footer class="footer">
         <h3>© Copyright Gutierrez Hnos. Electricidad - Design by Matias Daniel Gutierrez</h3>
     </footer>
+
+    <script src="./registerUser.js"></script>
 
 </body>
 </html>
