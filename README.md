@@ -12,5 +12,8 @@ La misma cuenta con:
 
 La misma esta realizada con:
   - HTML.
-  - SASS.
+  - CSS.
   - JS.
+  - Express.
+  - Node.js
+  - Sequelize.
