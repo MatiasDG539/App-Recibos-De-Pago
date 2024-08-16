@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
 
-    <title>Recibos De Pago</title>
+    <title>Login</title>
 
     <link rel="stylesheet" href="./../css/styles.css">
 
@@ -31,7 +31,12 @@
                     <label for="username">USUARIO: </label>
                     <input type="text" id="username" name="username" required maxlength="20">
                     <label for="password">CONTRASEÑA: </label>
-                    <input type="password" id="password" name="password" required minlength="6" maxlength="12">
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" required minlength="6" maxlength="12">
+                        <span class="toggle-password" onclick="togglePassword()">
+                            <img src="./../assets/img/eye-close.png" alt="Mostrar/Ocultar contraseña" id="eye-icon">
+                        </span>
+                    </div>
                     <a href="">Recuperar contraseña</a>
         
                     <button type="submit">INGRESAR</button>

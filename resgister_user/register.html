@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registrar Usuario</title>
 
     <link rel="stylesheet" href="./../src/css/styles.css">
 </head>
@@ -26,7 +26,12 @@
                     <label for="email">EMAIL: </label>
                     <input type="email" id="email" name="email" required>
                     <label for="password">CONTRASEÑA: </label>
-                    <input type="password" id="password" name="password" required minlength="6" maxlength="12">
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" required minlength="6" maxlength="12">
+                        <span class="toggle-password" onclick="togglePassword()">
+                            <img src="./../src/assets/img/eye-close.png" alt="Mostrar/Ocultar contraseña" id="eye-icon">
+                        </span>
+                    </div>
         
                     <button type="submit">REGISTRAR</button>
                 </form>

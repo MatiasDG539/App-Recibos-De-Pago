@@ -46,8 +46,8 @@ app.get('*', (req, res) => {
 });
 
 // Agregar las rutas de administración
-const adminRoutes = require('./backend/routes/admin');
-app.use('/admin', adminRoutes);
+// const adminRoutes = require('./backend/routes/admin');
+// app.use('/admin', adminRoutes);
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`)

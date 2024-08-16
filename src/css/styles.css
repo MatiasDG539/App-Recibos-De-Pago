@@ -247,6 +247,33 @@ body {
     border-radius: 8px;
 }
 
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.password-container .toggle-password {
+    position: absolute;
+    right: 10px;
+    bottom: 15px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    cursor: pointer;
+}
+.toggle-password img {
+    width: 30px;
+    height: 25px;
+    opacity: 0.4;
+    transition: opacity 0.3s;
+}
+
+.toggle-password img:hover {
+    opacity: 1;
+}
+
 /* Menu Header */
 
 .menuHeader {
