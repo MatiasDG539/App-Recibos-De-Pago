@@ -17,13 +17,13 @@ const registerUser = async (req, res) => {
         const newUser = await User.create({
             username,
             email,
-            password: hashedPassword,
+            pass: hashedPassword,
         });
 
         res.status(201).json({message: 'Usuario registrado con éxito', user: newUser});
     } catch (error) {
-        console.error(error);
-        res.status(500).json({message: 'Error registrando el usuario'});
+        console.error('Error al registrar usuario:', error);
+        res.status(500).json({message: 'Error registrando el usuario', error: error.message});
     }
 };
 
@@ -34,21 +34,21 @@ const login = async (req, res) => {
         //Buscar el usuario en la base de datos
         const user = await User.findOne({where: {username}});
         if(!user){
-            return res.status(401).json({message: "Usuario o contraseña incorrectos"});
+            return res.status(401).json({message: "Usuario o contraseña incorrectos", error: err.message});
         }
 
         //Verificar contraseña
         const validPassword = await bcrypt.compare(password, user.pass);
         if(!validPassword) {
-            return res.status(401).json({error: "Usuario o contraseña incorrectos"});
+            return res.status(401).json({error: "Usuario o contraseña incorrectos", error: err.message});
         }
         
         //Generar un token JWT
         const token = jwt.sign({id: user.id, username: user.username}, secret, {expiresIn: '1h'});
         res.json({token});
     } catch (err) {
-        console.error(err);
-        res.status(500).json({message: 'Error en el servidor'});
+        console.error('Error en el inicio de sesión:', err);
+        res.status(500).json({message: 'Error en el servidor', error: err.message});
     }
 };
 
