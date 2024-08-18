@@ -274,6 +274,92 @@ body {
     opacity: 1;
 }
 
+/* Forgot Password */
+
+.forgotP-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+    margin-bottom: 0;
+    text-align: center;
+    justify-content: center;
+    width: 600px;
+}
+
+.forgotP-container h2 {
+    color: #003554;
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 35px;
+    padding-bottom: 50px;
+}
+
+.forgotPass-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.forgotPass-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+}
+
+.forgotPass-form label,
+.forgotPass-form input,
+.forgotPass-form button {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 35px;
+}
+
+.forgotPass-form label {
+    color: #003554;
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 20px;
+}
+
+.forgotPass-form button {
+    color: #003554;
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    background-color: #ccdbfd;
+    font-size: 20px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 35px;
+}
+
+.forgotPass-form button:hover {
+    background-color: #b6ccfe;
+}
+
+.forgotPass-form input[type="email"] {
+    color: #003554;
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 18px;
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
 /* Menu Header */
 
 .menuHeader {

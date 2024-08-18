@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 option.textContent = client.client_name;
                 select.appendChild(option)
             });
+        })
+        .catch(error => {
+            console.error('Error al cargar los clientes', error);
         });
     //Lógica para rellenar automáticamente los campos Dirección y CUIL/CUIT en el caso de haber seleccionado un cliente.
     document.getElementById('clientName').addEventListener('change', function(event) {
@@ -22,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('clientData').value = client.client_data;
                 })
                 .catch(error => {
-                    console.error('Error: ', error);
+                    console.error('Error al obtener la información del cliente: ', error);
                 });
         } else {
             document.getElementById('clientAddress').value = '';
