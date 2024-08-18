@@ -17,7 +17,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             const data = await response.json();
             localStorage.setItem('token', data.token);
             console.log('Redirigiendo a index.html');
-            window.location.href = './../../index.html';
+            window.location.href = './src/pages/main.html';
         } else {
             alert('Inicio de sesión fallido. Verifica tu usuario o contraseña.');
         }
@@ -33,9 +33,9 @@ function togglePassword() {
     const eyeIcon = document.getElementById('eye-icon');
     if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
-        eyeIcon.src = './../assets/img/visible-eye-open.png';
+        eyeIcon.src = './src/assets/img/visible-eye-open.png';
     } else {
         passwordInput.type = 'password';
-        eyeIcon.src = './../assets/img/eye-close.png';
+        eyeIcon.src = './src/assets/img/eye-close.png';
     }
 }

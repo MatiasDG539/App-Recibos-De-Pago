@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require('./../../src/js/db');
+const crypto = require('crypto');
 
 const User = sequelize.define(
     "User",
@@ -17,6 +18,15 @@ const User = sequelize.define(
         pass: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+
+        resetPasswordToken: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        resetPasswordExpires: {
+            type: DataTypes.DATE,
+            allowNull: true
         }
     },
     {
