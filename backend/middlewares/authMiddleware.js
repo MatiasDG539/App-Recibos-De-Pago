@@ -1,21 +1,21 @@
-const jwt = require("jsonwebtoken");
-const {secret} = require("./../config/jwtConfig");
+const jwt = require('jsonwebtoken');
+const path = require('path');
 
 const authenticate = (req, res, next) => {
     const token = req.headers['authorization']?.split(' ')[1];
-    
-    if (!token) {
-        return res.redirect('/index.html');
+
+    if (token) {
+        jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+            if (err) {
+                return res.sendFile(path.join(__dirname, './../../index.html'));
+            }
+
+            req.userId = user.id;
+            next();
+        });
+    } else {
+        return res.sendFile(path.join(__dirname, './../../index.html'));
     }
-
-    jwt.verify(token, secret, (err, decoded) => {
-        if (err) {
-            return res.redirect('/index.html');
-        }
-
-        req.userId = decoded.id;
-        next();
-    });
 };
 
 module.exports = authenticate;

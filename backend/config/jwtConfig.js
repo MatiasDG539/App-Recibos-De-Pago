@@ -1,4 +1,7 @@
-module.exports = {
-    secret: '2434542Mg191101Ma',
-    options: {expiresIn: '1h'}
-};
+const jwt = require('jsonwebtoken');
+
+const generateJWT = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET, {
+        expiresIn: '1h'
+    });
+}
