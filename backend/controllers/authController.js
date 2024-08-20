@@ -1,10 +1,9 @@
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const { Op } = require('sequelize');
 const nodemailer = require('nodemailer');
 const {User} = require("./../models");
-const { secret } = require("../config/jwtConfig");
 
 //Registro de usuario
 const registerUser = async (req, res) => {
@@ -35,23 +34,27 @@ const login = async (req, res) => {
     const {username, password} = req.body;
     try{
         //Buscar el usuario en la base de datos
-        const user = await User.findOne({where: {username}});
+        const user = await User.findOne({ where: { username }});
         if(!user){
-            return res.status(401).json({message: "Usuario o contraseña incorrectos", error: err.message});
+            return res.status(401).json({ message: "Usuario o contraseña incorrectos" });
         }
 
         //Verificar contraseña
         const validPassword = await bcrypt.compare(password, user.pass);
         if(!validPassword) {
-            return res.status(401).json({error: "Usuario o contraseña incorrectos", error: err.message});
+            return res.status(401).json({ error: "Usuario o contraseña incorrectos" });
         }
         
         //Generar un token JWT
-        const token = jwt.sign({id: user.id, username: user.username}, secret, {expiresIn: '1h'});
+        const token = jwt.sign({id: user.id, username: user.username}, process.env.JWT_SECRET, {expiresIn: '1h'});
         res.json({ token });
+
+        console.log('token');
+        console.log(token);
+
     } catch (err) {
         console.error('Error en el inicio de sesión:', err);
-        res.status(500).json({message: 'Error en el servidor', error: err.message});
+        res.status(500).json({ message: 'Error en el servidor' });
     }
 };
 
