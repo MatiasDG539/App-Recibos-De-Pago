@@ -401,7 +401,7 @@ body {
     font-weight: 800;
     font-style: normal;
     font-size: 40px;
-    padding-bottom: 40px;
+    padding-bottom: 10px;
 }
 
 #userMessage {
@@ -411,7 +411,7 @@ body {
     font-weight: 800;
     font-style: normal;
     font-size: 30px;
-    padding-bottom: 35px;
+    padding: 35px 0;
 }
 
 .buttonsRow {
@@ -436,7 +436,6 @@ body {
     font-style: normal;
     background-color: #ccdbfd;
     font-size: 25px;
-    width: 100%;
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -462,7 +461,6 @@ body {
     flex: 1;
     align-items: center;
     justify-content: center;
-    padding: 20px;
     margin: auto;
 }
 
@@ -527,6 +525,7 @@ form textarea {
     resize: vertical;
     font-family: "Manrope", sans-serif;
     font-optical-sizing: auto;
+    font-size: 16px;
 }
 
 form textarea::placeholder {
@@ -563,66 +562,85 @@ form select {
     border: 1px solid black;
 }
 
-.receipt {
-    display: grid;
-    grid-template-areas:
-        "logo logo"
-        "company-info client-info"
-        "details details"
-        "total total"
-        "signature signature"
-        "funcButtons funcButtons";
-    grid-gap: 10px;
-}
+/* Tabla de conceptos */
 
-.header {
-    grid-area: logo;
-    text-align: center;
-    border-bottom: 1 solid black;
-    padding-bottom: 10px;
-}
-
-.header img {
+#conceptTable {
     width: 100%;
-    max-width: 250px;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    margin: 20px 0;
 }
 
-.info {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid black;
-    padding-bottom: 20px;
+#conceptTable th, #conceptTable td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 10px;
 }
 
-.company-info, .client-info {
-    width: 45%;
+#conceptTable th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: bold;
 }
 
-.details {
-    grid-area: details;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
-    border-bottom: 1px solid black;
-    padding-bottom: 20px;
+#conceptTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
 
-.total {
-    grid-area: total;
-    display: flex;
-    justify-content: space-between;
+#conceptTable tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+#conceptTable td {
+    color: #555;
+}
+
+#conceptTable th, #conceptTable td {
+    padding: 10px 15px;
+}
+
+#conceptTable th {
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-size: 16px;
+}
+
+#conceptTable td {
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-size: 16px;
+    height: 40px;
+}
+
+#conceptTable .acciones {
+    text-align: center;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    margin: 0 5px;
+    transition: color 0.3s;
     align-items: center;
-    padding-top: 20px;
-    border-top: 1px solid black;
 }
 
-.signature {
-    grid-area: signature;
-    margin-top: 20px;
+.icon-button:hover {
+    color: #007bff;
 }
+
+.edit-btn i, .delete-btn i {
+    font-size: 18px;
+}
+
+/* Diseño del recibo */
 
 .receiptButtons {
-    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
 }
 
 .receiptButtons button {
@@ -672,14 +690,55 @@ form select {
     background-color: #b6ccfe;
 }
 
+.menuButton {
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+
+.menuButton button{
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 30px;
+    color: #003554;
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    background-color: #ccdbfd;
+    font-size: 25px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
 /* Footer */
 
-.footer {
+#footer {
     background-color: #2d4af1;
-    padding: 40px;
+    padding: 14px;
     text-align: center;
     width: 100%;
     position: absolute;
+    bottom: 0;
+}
+
+#footer h3 {
+    color: white;
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.footer {
+    background-color: #2d4af1;
+    padding: 14px;
+    text-align: center;
+    width: 100%;
+    position: relative;
     bottom: 0;
 }
 
