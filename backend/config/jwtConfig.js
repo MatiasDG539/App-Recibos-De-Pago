@@ -5,3 +5,5 @@ const generateJWT = (id) => {
         expiresIn: '1h'
     });
 }
+
+module.exports = generateJWT;
