@@ -27,6 +27,10 @@ const User = sequelize.define(
         resetPasswordExpires: {
             type: DataTypes.DATE,
             allowNull: true
+        },
+        jwtToken: {
+            type: DataTypes.STRING,
+            allowNull: true,
         }
     },
     {

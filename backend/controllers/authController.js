@@ -45,15 +45,39 @@ const login = async (req, res) => {
             return res.status(401).json({ error: "Usuario o contraseña incorrectos" });
         }
         
-        //Generar un token JWT
-        const token = jwt.sign({id: user.id, username: user.username}, process.env.JWT_SECRET, {expiresIn: '1h'});
+        const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        await User.update({ jwtToken: token }, { where: { id: user.id } });
+
         res.json({ token });
-
-        console.log('token');
-        console.log(token);
-
     } catch (err) {
         console.error('Error en el inicio de sesión:', err);
+        res.status(500).json({ message: 'Error en el servidor' });
+    }
+};
+
+const logout = async (req, res) => {
+    try {
+        const token = req.headers['authorization']?.split(' ')[1];
+
+        if (!token) {
+            return res.status(400).json({ message: 'Token no proporcionado' });
+        }
+
+        // Decodificar el token para obtener el ID del usuario
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const userId = decoded.id;
+
+        // Actualizar el token en la base de datos a null
+        const result = await User.update({ jwtToken: null }, { where: { id: userId, jwtToken: token } });
+
+        if (result[0] > 0) {
+            res.status(200).json({ message: 'Cierre de sesión exitoso' });
+        } else {
+            res.status(400).json({ message: 'Token no encontrado o usuario inválido' });
+        }
+    } catch (error) {
+        console.error('Error al cerrar sesión:', error);
         res.status(500).json({ message: 'Error en el servidor' });
     }
 };
@@ -88,10 +112,20 @@ const forgotPassword = async (req, res) => {
             from: 'gutierrezhnoselectricidad@gmail.com',
             to: user.email,
             subject: 'Restablecer contraseña',
-            text: `Recibiste este correo porque tú (u otra persona) solicitaste el restablecimiento de la contraseña de tu cuenta.\n\n` +
-                `Por favor, haz clic en el siguiente enlace o pégalo en tu navegador para completar el proceso dentro de 10 minutos de haber recibido este correo:\n\n` +
-                `http://${req.headers.host}/reset-password/${resetToken}\n\n` +
-                `Si no solicitaste este correo, simplemente ignóralo y tu contraseña no cambiará.\n`
+            html: `<p style="font-size: 16px";>Recibiste este correo porque tú (u otra persona) solicitaste el restablecimiento de la contraseña de tu cuenta.</p>
+           <p style="font-size: 16px">Por favor, haz clic en el siguiente enlace o pégalo en tu navegador para completar el proceso dentro de 10 minutos de haber recibido este correo:</p>
+           <p style="font-size: 16px"><a href="http://${req.headers.host}/reset-password/${resetToken}">Restablecer contraseña</a></p>
+           <p style="font-size: 16px">Si no solicitaste este correo, simplemente ignóralo y tu contraseña no cambiará.</p>
+           <br>
+           <p style="font-size: 16px">Saludos cordiales,</p>
+           <p style="font-size: 16px">El equipo de soporte</p>
+           <p style="font-size: 16px"><strong>Gutierrez Hnos Electricidad</strong></p><
+           <br>
+           <!-- Firma HTML -->
+            <div dir="ltr">
+               <p style="font-size: 18px; color: #333;"><strong>Gracias por confiar en nuestro servicio!</strong></p>
+               <img src="https://ci3.googleusercontent.com/mail-sig/AIorK4xG6u2vvUqCXSpXAGWAmQod9SRIu86A0Iok9kFjDs8_INfv7fDgUcsETkLe_gguaX6uWmwyGbj4xBA1" alt="Firma" style="max-width: 400px; height: auto;">
+           </div>`
         };
 
         //Envía el correo electrónico
@@ -135,4 +169,19 @@ const resetPassword = async (req, res) => {
     }
 }
 
-module.exports = { registerUser, login, forgotPassword, resetPassword, };
+const userInfo = async (req, res) => {
+    try {  
+        const user = await User.findOne({ where: { id: req.user.id }});
+
+        if(!user) {
+            return res.status(401).json({ message: 'Usuario no encontrado' });
+        }
+
+        res.json({ username: user.username });
+    }catch(err) {
+        console.error('Error al obtener la información del usuario', err);
+        res.status(500).json({ message: 'Error en el servidor' });
+    }
+};
+
+module.exports = { registerUser, login, logout, forgotPassword, resetPassword, userInfo, };

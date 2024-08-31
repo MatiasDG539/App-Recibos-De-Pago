@@ -1,33 +1,27 @@
 const express = require('express');
-const { Client } = require('./../models');
-
 const router = express.Router();
+const { Client } = require('../models');
 
-//Obtener todos los clientes
-router.get('/client', async (req, res) => {
+router.get('/clients', async (req, res) => {
     try {
-        const clients = await Client.findAll();
+        const clients = await Client.findAll({ attributes: ['id', 'client_name', 'client_address', 'client_data'] });
         res.json(clients);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Error al obtener la lista de clientes'});
+        res.status(500).json({ message: 'Error al obtener los clientes' });
     }
 });
 
-//Obtener información de un cliente especifico por nombre
-router.get('/client:name', async (req, res) => {
+router.get('/clients/:id', async (req, res) => {
     try {
-        const client = await Client.findOne({ where: { client_name: req.params.name } });
-        if (!client) {
-            return res.status(404).json({ error: 'Cliente no encontrado '});
+        const client = await Client.findByPk(req.params.id, { attributes: ['client_address', 'client_data']});
+        if(!client) {
+            return res.status(404).json({ message: 'Cliente no encontrado' });
         }
-        res.json({
-            client_address: client.client_address,
-            client_data: client.client_data
-        });
+        res.json(client);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Error al obtener la información del cliente'})
+        res.status(500).json({ message: 'Error al obtener el cliente' });
     }
 });
 
